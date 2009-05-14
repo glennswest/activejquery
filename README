@@ -1,4 +1,33 @@
-A Rails plugin to allow automatic use of Jquery Grid
-and Restful Controllers.
+Activejquery
+============
+
+May 14 2009 - Added support for one line controller.
+              Added Support for ProtectFromForgery
 
 
+Environment: 
+=======
+Designed for Ruby 1.9.1 and Rails 2.3.2
+
+Example
+=======
+
+Example Controller:
+Class AirstateController < ApplicationController
+#before_filter :login_required
+
+      active_jquery :Syslog
+             
+end
+
+Where Syslog is the name of the model.
+
+TODO
+===========
+1. Relationships - Nested Tables
+2. Customization
+3. More Edit Types
+
+~                        
+
+Copyright (c) 2009 Glenn S West, released under the MIT license
