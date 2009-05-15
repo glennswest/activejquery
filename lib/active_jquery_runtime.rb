@@ -66,7 +66,17 @@ def filter_for_update(my_params)
     my_params.each {|key,value|
           if @columns.has_key?(key)   # We have that param as a column
              if @columns[key]["editable"]
-                user_params[key] = value
+                case @columns[key]["type"]
+                 when 'boolean'
+                   case value
+                       when 'on'
+                          user_params[key] = true
+                       when 'off'
+                          user_params[key] = false
+                       end
+                 else
+                  user_params[key] = value
+                  end
                 end
           end
           }
@@ -126,14 +136,15 @@ def jqgrid_generate(divid='list')
        end
      case @columns[cname]["type"]
          when 'boolean'
-              @jqgrid_str << "width:80,align:'left',edittype:'checkbox',"
+              @jqgrid_str << "width:80,align:'left',edittype:'checkbox'," +
+                             "formatter:'checkbox',"
          when 'string'
               @jqgrid_str << "width:300,align:'left',"
          when 'integer'
               @jqgrid_str << "width:80,align:'right',"
          when 'datetime'
               # <created-on type="datetime">2008-08-18T07:00:24Z</created-on>
-              @jqgrid_str << "width:130,"
+              @jqgrid_str << "width:180,"
         end
      if @columns[cname]["editable"]
         @jqgrid_str << "editable:true"

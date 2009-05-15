@@ -20,6 +20,12 @@ Environment:
 =======
 Designed for Ruby 1.9.1 and Rails 2.3.2
 
+Routes
+=======
+You must add a active resource route in config/routes.rb
+
+map.resources :airstate
+
 Example
 =======
 
