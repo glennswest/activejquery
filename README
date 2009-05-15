@@ -11,6 +11,9 @@ May 15 2009 - Fixed ProtectFromForgery for add and delete.
               Fixed a typo where the wrong model was used for updates
               Merged in public/css and javascripts code to plubin
               Added install.rb to copy needed files
+              Added support for boolean fields
+              Fixed runtime to disable edit on activerecord magic fields,
+                    such as date_created, date_updated, etc
 
 
 Environment: 

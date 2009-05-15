@@ -31,13 +31,23 @@ def initialize(table,ctlenv)
          @columns[cname]["hidden"] = FALSE
          @columns[cname]["label"] = cname.humanize
          @columns[cname]["listok"] = TRUE
-         if cname == "id"
-           @columns[cname]["key"] = TRUE
-           @columns[cname]["editable"] = FALSE
-          else
-           @columns[cname]["key"] = FALSE
-           @columns[cname]["editable"] = @edit
-          end
+         case cname
+           when "id"
+             @columns[cname]["key"] = TRUE
+             @columns[cname]["editable"] = FALSE
+           when "created_at"
+             @columns[cname]["key"] = FALSE
+             @columns[cname]["editable"] = FALSE
+           when "updated_on"
+             @columns[cname]["key"] = FALSE
+             @columns[cname]["editable"] = FALSE
+           when "updated_at"
+             @columns[cname]["key"] = FALSE
+             @columns[cname]["editable"] = FALSE
+           else
+             @columns[cname]["key"] = FALSE
+             @columns[cname]["editable"] = @edit
+             end
         end
           
    @tableheading = @controller.humanize()
@@ -115,21 +125,21 @@ def jqgrid_generate(divid='list')
         @jqgrid_str << "key:false,"
        end
      case @columns[cname]["type"]
+         when 'boolean'
+              @jqgrid_str << "width:80,align:'left',edittype:'checkbox',"
          when 'string'
               @jqgrid_str << "width:300,align:'left',"
-              if @columns[cname]["editable"]
-                 @jqgrid_str << "editable:true,"
-                else
-                 @jqgrid_str << "editable:false,"
-                end
-              #@jqgrid_str << "edittype:" + '"' + @columns[cname]["edittype"] + '"' + ","
          when 'integer'
               @jqgrid_str << "width:80,align:'right',"
          when 'datetime'
               # <created-on type="datetime">2008-08-18T07:00:24Z</created-on>
               @jqgrid_str << "width:130,"
         end
-    @jqgrid_str.chop! # Get rid of trailing comma
+     if @columns[cname]["editable"]
+        @jqgrid_str << "editable:true"
+       else
+        @jqgrid_str << "editable:false"
+       end
     @jqgrid_str << "},\n"
     }
   @jqgrid_str.chomp!
