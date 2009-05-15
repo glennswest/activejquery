@@ -10,6 +10,7 @@ May 15 2009 - Fixed ProtectFromForgery for add and delete.
                  10 records.
               Fixed a typo where the wrong model was used for updates
               Merged in public/css and javascripts code to plubin
+              Added install.rb to copy needed files
 
 
 Environment: 
@@ -29,13 +30,20 @@ end
 
 Where Syslog is the name of the model.
 
+Installation:
+ruby script/plugin --verbose install git://github.com/glennswest/activejquery.git
+
+Note: This (git based plugins) is broken in ruby 1.9.1 unless you do a patch.
+See:
+http://mentalpagingspace.blogspot.com/2009/05/ruby-scriptplugin-git-does-not-work-in.html
+https://rails.lighthouseapp.com/attachments/90768/plugin_mkdir_p.diff
+
 TODO
 ===========
 1. Relationships - Nested Tables
 2. Customization
 3. More Edit Types
-4. Automatic copy of css and javascripts to projects
-5. Automatic route creation
+4. Automatic route creation
 ~                        
 
 Copyright (c) 2009 Glenn S West, released under the MIT license
