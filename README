@@ -3,6 +3,13 @@ Activejquery
 
 May 14 2009 - Added support for one line controller.
               Added Support for ProtectFromForgery
+May 15 2009 - Fixed ProtectFromForgery for add and delete.
+              Moved from using editdata for Forgery Protection,
+                 to using the edit url, for all edit/add/delete.
+              Fixed Paging offset that was not showing the first
+                 10 records.
+              Fixed a typo where the wrong model was used for updates
+              Merged in public/css and javascripts code to plubin
 
 
 Environment: 
@@ -27,7 +34,8 @@ TODO
 1. Relationships - Nested Tables
 2. Customization
 3. More Edit Types
-
+4. Automatic copy of css and javascripts to projects
+5. Automatic route creation
 ~                        
 
 Copyright (c) 2009 Glenn S West, released under the MIT license

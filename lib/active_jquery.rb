@@ -1,4 +1,5 @@
 require 'active_jquery_runtime'
+require 'pp'
 
 module ActiveJquery
   def self.included(base)
@@ -56,7 +57,9 @@ module ActiveJquery
                 else
                  if params[:id] == "_empty"
                     user_params = @ajs.filter_for_create(params)
-                    self.class.active_jquery_config.model.create(user_params)
+                    myrecord = self.class.active_jquery_config.model.create
+                    myrecord.update_attributes(user_params)
+                    myrecord.save
                    else 
                     user_params = @ajs.filter_for_update(params)
                     self.class.active_jquery_config.model.find(params[:id]).update_attributes(user_params)
@@ -87,10 +90,10 @@ module ActiveJquery
                              if params[:rows]
                                 myrows = params[:rows].to_i
                                 mypage = params[:page].to_i
-                                myrecords = Syslog.count(:all).to_i
+                                myrecords = self.class.active_jquery_config.model.count(:all).to_i
                                 totalrecords = myrecords / myrows
                                 findargs[:limit] =  myrows
-                                findargs[:offset] = mypage * findargs[:limit]
+                                findargs[:offset] = (mypage - 1) * findargs[:limit]
                                 myxml << '<page type="integer">' + mypage.to_s + "</page>\n"
                                 myxml << '<total type="integer">' + totalrecords.to_s + '</total>' + "\n"
                                 myxml << '<records type="integer">' + myrecords.to_s + "</records>\n"

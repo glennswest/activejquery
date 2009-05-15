@@ -47,7 +47,8 @@ end
 
 def filter_for_create(my_params)
     # For now, treat as a update
-    filter_for_update(my_params)
+    user_parms = filter_for_update(my_params)
+    return user_parms
 end
 
 def filter_for_update(my_params)
@@ -82,16 +83,18 @@ def jqgrid_generate(divid='list')
   @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
      if @edittype == :inplace
-        @jqgrid_str << "var " + divid + "lastsel;"
-        @jqgrid_str << "\n"
+        @jqgrid_str << "var " + divid + "lastsel;\n"
+        @jqgrid_str << "var editurl;\n"
         @jqgrid_str << "var extraparam = {};\n"
         @jqgrid_str << "extraparam = {authenticity_token:authenticityToken};\n"
+        @jqgrid_str << "myediturl = '" + @url + 
+                       "' + '?authenticity_token=' + authenticityToken;\n"
         end
      end
   @jqgrid_str << 'jQuery(document).ready(function(){' + "\n"
   @jqgrid_str << 'jQuery("#' + divid + '").jqGrid({' + "\n"
   @jqgrid_str << "   url:'" + @url + ".xml" +"',\n"
-  @jqgrid_str << "   editurl:'" + @url + "',\n"
+  @jqgrid_str << "   editurl: myediturl,\n"
   @jqgrid_str << "   datatype: 'xml', \n"
   @jqgrid_str << "   height: " + '"auto"' + ", \n"
   @jqgrid_str << "   mtype: 'GET',\n"
@@ -143,7 +146,7 @@ def jqgrid_generate(divid='list')
         @jqgrid_str << "        jQuery('#" + divid + "').restoreRow(" + divid + "lastsel);\n"
         @jqgrid_str << "         " + divid + "lastsel=id;\n"
         @jqgrid_str << "         }\n"
-        @jqgrid_str << "     jQuery('#" + divid + "').editRow(id,true,null,null,this.editurl,extraparam);\n"
+        @jqgrid_str << "     jQuery('#" + divid + "').editRow(id,true);\n"
         @jqgrid_str << "     },\n"
         end
      end
