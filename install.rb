@@ -11,6 +11,6 @@ end
 directory = File.dirname(__FILE__)
 copy_files("/public/css", "/public/css", directory)
 copy_files("/public/javascripts", "/public/javascripts", directory)
-copy_files("/app/viewsw/activejquery", "/app/views/activejquery", directory)
+copy_files("/app/views/activejquery", "/app/views/activejquery", directory)
 
 
