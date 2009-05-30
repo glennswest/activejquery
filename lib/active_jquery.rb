@@ -91,7 +91,7 @@ module ActiveJquery
                                 myrows = params[:rows].to_i
                                 mypage = params[:page].to_i
                                 myrecords = self.class.active_jquery_config.model.count(:all).to_i
-                                totalrecords = myrecords / myrows
+                                totalrecords = (myrecords / myrows) + 1
                                 findargs[:limit] =  myrows
                                 findargs[:offset] = (mypage - 1) * findargs[:limit]
                                 myxml << '<page type="integer">' + mypage.to_s + "</page>\n"
