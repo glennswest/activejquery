@@ -9,7 +9,8 @@ def initialize(table,ctlenv)
    @actions = [:create, :update, :show, :delete, :search]
    @edit = FALSE
    @editmodes = [:inplace,:form]
-   @edittype = :inplace
+   #@edittype = :inplace
+   @edittype = :form
    if @actions.include?(:create) or @actions.include?(:update)
      @edit = TRUE
      end
@@ -192,7 +193,7 @@ def jqgrid_generate(divid='list')
   @jqgrid_str << "},\n"
   @jqgrid_str << "  });\n"
   @jqgrid_str << 'jQuery("#' + divid + '")' + ".navGrid('#" + divid + "-pager'," +
-                 '{viewrecords:false,add:true,del:true,search:true });' + "\n"
+                 '{viewrecords:false,add:true,del:true,search:true, show:true });' + "\n"
   @jqgrid_str << "});\n"
   @jqgrid_str << "</script>\n"
 end
