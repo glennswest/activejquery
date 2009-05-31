@@ -103,13 +103,13 @@ def jqgrid_generate(divid='list')
   @jqgrid_str = String.new
   @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
+     @jqgrid_str << "var editurl;\n"
+     @jqgrid_str << "var extraparam = {};\n"
+     @jqgrid_str << "extraparam = {authenticity_token:authenticityToken};\n"
+     @jqgrid_str << "myediturl = '" + @url + 
+                       "' + '?authenticity_token=' + authenticityToken;\n"
      if @edittype == :inplace
         @jqgrid_str << "var " + divid + "lastsel;\n"
-        @jqgrid_str << "var editurl;\n"
-        @jqgrid_str << "var extraparam = {};\n"
-        @jqgrid_str << "extraparam = {authenticity_token:authenticityToken};\n"
-        @jqgrid_str << "myediturl = '" + @url + 
-                       "' + '?authenticity_token=' + authenticityToken;\n"
         end
      end
   @jqgrid_str << 'jQuery(document).ready(function(){' + "\n"
@@ -193,7 +193,7 @@ def jqgrid_generate(divid='list')
   @jqgrid_str << "},\n"
   @jqgrid_str << "  });\n"
   @jqgrid_str << 'jQuery("#' + divid + '")' + ".navGrid('#" + divid + "-pager'," +
-                 '{viewrecords:false,add:true,del:true,search:true});' + "\n"
+                 '{viewrecords:false,add:true,del:true,search:true,show:true});' + "\n"
   @jqgrid_str << "});\n"
   @jqgrid_str << "</script>\n"
 end
