@@ -141,19 +141,19 @@ def jqgrid_generate(divid='list')
   @jqgrid_str = String.new
   @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
-     @jqgrid_str << "var editurl;\n"
-     @jqgrid_str << "var extraparam = {};\n"
-     @jqgrid_str << "extraparam = {authenticity_token:encodeURIComponent(authenticityToken)};\n"
-     @jqgrid_str << "myediturl = '" + @url + 
+     @jqgrid_str << "var " + divid + "_editurl;\n"
+     @jqgrid_str << "var " + divid + "_extraparam = {};\n"
+     @jqgrid_str << divid + "_extraparam = {authenticity_token:encodeURIComponent(authenticityToken)};\n"
+     @jqgrid_str << divid + "_editurl = '" + @url + 
                        "' + '?authenticity_token=' + encodeURIComponent(authenticityToken);\n"
      if @edittype == :inplace
-        @jqgrid_str << "var " + divid + "lastsel;\n"
+        @jqgrid_str << "var " + divid + "_lastsel;\n"
         end
      end
   @jqgrid_str << 'jQuery(document).ready(function(){' + "\n"
   @jqgrid_str << 'jQuery("#' + divid + '").jqGrid({' + "\n"
   @jqgrid_str << "   url:'" + @url + ".xml" +"',\n"
-  @jqgrid_str << "   editurl: myediturl,\n"
+  @jqgrid_str << "   editurl: " + divid + "_editurl,\n"
   @jqgrid_str << "   datatype: 'xml', \n"
   @jqgrid_str << "   height: " + '"auto"' + ", \n"
   @jqgrid_str << "   mtype: 'GET',\n"
@@ -207,9 +207,9 @@ def jqgrid_generate(divid='list')
   if @edit == TRUE
      if @edittype == :inplace
         @jqgrid_str << "   onSelectRow: function(id){\n"
-        @jqgrid_str << "     if(id && id!==" + divid + "lastsel){\n"
-        @jqgrid_str << "        jQuery('#" + divid + "').restoreRow(" + divid + "lastsel);\n"
-        @jqgrid_str << "         " + divid + "lastsel=id;\n"
+        @jqgrid_str << "     if(id && id!==" + divid + "_lastsel){\n"
+        @jqgrid_str << "        jQuery('#" + divid + "').restoreRow(" + divid + "_lastsel);\n"
+        @jqgrid_str << "         " + divid + "_lastsel=id;\n"
         @jqgrid_str << "         }\n"
         @jqgrid_str << "     jQuery('#" + divid + "').editRow(id,true);\n"
         @jqgrid_str << "     },\n"
