@@ -239,7 +239,8 @@ def jqgrid_generate(divid='list')
   @jqgrid_str << "  });\n"
   @jqgrid_str << 'jQuery("#' + divid + '")' + ".navGrid('#" + divid + "-pager'," +
                  '{viewrecords:false,add:true,del:true,search:true,view:true});' + "\n"
-  @jqgrid_str << "});\n"
+  #@jqgrid_str << "});\n"
+  @jqgrid_str << "};\n"
   @jqgrid_str << "</script>\n"
 end
 
