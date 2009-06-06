@@ -9,6 +9,7 @@ def initialize(table,ctlenv)
    @actions = [:create, :update, :show, :delete, :search]
    @edit = FALSE
    @editmodes = [:inplace,:form]
+   @jqgrid_html = String.new
    #@edittype = :inplace
    @edittype = :form
    if @actions.include?(:create) or @actions.include?(:update)
@@ -88,7 +89,8 @@ def initialize(table,ctlenv)
        pp themacro
        pp thetable
        if themacro == :has_many
-          myajq = ActiveJquery::Config.new(thetable)
+          @jqgrid_html << "<script src=" + thetable + '".js" type="text/javascript"></script>' + "\n"
+          self.html_generate(thetable)
           end
        }
 end
@@ -127,7 +129,6 @@ end
 
 
 def html_generate(divid = 'list')
-   @jqgrid_html = String.new
    @jqgrid_html << '<div id="' + divid + '-pager" class="scroll"' + '></div>' + "\n"
    @jqgrid_html << '<table id="' + divid + '" class="scroll" style="text-align:left;"></table>' + "\n"
 end
