@@ -144,7 +144,7 @@ end
 
 def jqgrid_generate(divid='list')
   @jqgrid_str = String.new
-  @jqgrid_str << '<script type="text/javascript">' + "\n"
+  # @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
      @jqgrid_str << "var " + divid + "_editurl;\n"
      @jqgrid_str << divid + "_editurl = '" + @url + 
@@ -240,7 +240,7 @@ def jqgrid_generate(divid='list')
   @jqgrid_str << ".navGrid('#" + divid + "-pager'," +
                  '{viewrecords:false,add:true,del:true,search:true,view:true});' + "\n"
   @jqgrid_str << "});\n"
-  @jqgrid_str << "</script>\n"
+  # @jqgrid_str << "</script>\n"
 end
 
 
