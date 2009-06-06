@@ -45,7 +45,6 @@ module ActiveJquery
                   @ajs = ActiveJqueryRuntime.new(self.class.active_jquery_config.model,self)
                   @content_for_layout = String.new
                   @content_for_layout << '<script src="' + params[:controller] + '.js" type="text/javascript"></script>' + "\n"
-                  @content_for_layout << @ajs.grid_javascript()
                   @content_for_layout << @ajs.grid_html()
                   @heading = params[:controller].humanize()
                   @title = @heading
