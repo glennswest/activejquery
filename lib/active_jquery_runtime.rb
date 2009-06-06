@@ -81,8 +81,7 @@ def initialize(table,ctlenv)
 #    @options={:extend=>[]}>],
 
    @associations.each {|myassoc|
-       pp myassoc.@macro
-       pp myassoc.@name
+       pp myassoc
        }
    self.jqgrid_generate(@tablename)
    self.html_generate(@tablename)
