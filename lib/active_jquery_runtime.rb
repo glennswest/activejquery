@@ -221,7 +221,7 @@ def jqgrid_generate(divid='list')
 #
   @jqgrid_str << "   rowNum:10,\n"
   @jqgrid_str << "   autowidth: true,\n"
-  @jqgrid_str << '   toolbar: [true,"top"],' + "\n"
+  #@jqgrid_str << '   toolbar: [true,"top"],' + "\n"
   #@jqgrid_str << "   rowList:[10,20,30],\n"
   @jqgrid_str << "   sortname: 'id',\n"
   @jqgrid_str << '   sortorder: "desc",' + "\n"
