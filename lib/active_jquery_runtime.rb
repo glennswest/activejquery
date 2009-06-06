@@ -154,9 +154,9 @@ def jqgrid_generate(divid='list')
               @jqgrid_str << "width:180,"
         end
      if @columns[cname]["hidden"]
-        @jqgrid_str << "hidden:true"
+        @jqgrid_str << "hidden:true,"
        else
-        @jqgrid_str << "hidden:false"
+        @jqgrid_str << "hidden:false,"
        end
      if @columns[cname]["editable"]
         @jqgrid_str << "editable:true"
