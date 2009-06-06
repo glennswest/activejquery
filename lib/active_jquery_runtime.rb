@@ -17,6 +17,7 @@ def initialize(table,ctlenv)
     
    @columns = Hash.new
    @table = table
+   @associations = table.reflect_on_all_associations
    @tabledef = table.inspect.split(/[:,()]/)
    @tabledef.each {|theitem|
          theitem.lstrip!
@@ -36,15 +37,19 @@ def initialize(table,ctlenv)
            when "id"
              @columns[cname]["key"] = TRUE
              @columns[cname]["editable"] = FALSE
+             @columns[cname]["hidden"] = TRUE
            when "created_at"
              @columns[cname]["key"] = FALSE
              @columns[cname]["editable"] = FALSE
+             @columns[cname]["hidden"] = TRUE
            when "updated_on"
              @columns[cname]["key"] = FALSE
              @columns[cname]["editable"] = FALSE
+             @columns[cname]["hidden"] = TRUE
            when "updated_at"
              @columns[cname]["key"] = FALSE
              @columns[cname]["editable"] = FALSE
+             @columns[cname]["hidden"] = TRUE
            else
              @columns[cname]["key"] = FALSE
              @columns[cname]["editable"] = @edit
@@ -52,6 +57,7 @@ def initialize(table,ctlenv)
         end
           
    @tableheading = @controller.humanize()
+   pp self
    self.jqgrid_generate()
    self.html_generate()
 end
