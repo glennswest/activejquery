@@ -82,14 +82,19 @@ def initialize(table,ctlenv)
 #    @options={:extend=>[]}>],
 
    self.jqgrid_generate(@tablename)
+   # Add the javascripts for the associated tables
+   @associations.each {|myassoc|
+       themacro = myassoc.macro.to_s
+       thetable = myassoc.class_name
+       if themacro == "has_many"
+          @jqgrid_html << '<script src="' + thetable.downcase + '.js" type="text/javascript"></script>' + "\n"
+          end
+       }
    self.html_generate(@tablename)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
-       pp themacro
-       pp thetable
        if themacro == "has_many"
-          @jqgrid_html << '<script src="' + thetable.downcase + '.js" type="text/javascript"></script>' + "\n"
           self.html_generate(thetable)
           end
        }
