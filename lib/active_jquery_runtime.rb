@@ -88,7 +88,7 @@ def initialize(table,ctlenv)
        thetable = myassoc.class_name
        pp themacro
        pp thetable
-       if themacro == :has_many
+       if themacro == "has_many"
           @jqgrid_html << "<script src=" + thetable + '".js" type="text/javascript"></script>' + "\n"
           self.html_generate(thetable)
           end
