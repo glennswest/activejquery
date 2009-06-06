@@ -153,6 +153,11 @@ def jqgrid_generate(divid='list')
               # <created-on type="datetime">2008-08-18T07:00:24Z</created-on>
               @jqgrid_str << "width:180,"
         end
+     if @columns[cname]["hidden"]
+        @jqgrid_str << "hidden:true"
+       else
+        @jqgrid_str << "hidden:false"
+       end
      if @columns[cname]["editable"]
         @jqgrid_str << "editable:true"
        else
