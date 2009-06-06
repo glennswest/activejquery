@@ -87,6 +87,9 @@ def initialize(table,ctlenv)
        thetable = myassoc.class_name
        pp themacro
        pp thetable
+       if themacro == :has_many
+          myajq = ActiveJquery::Config.new(thetable)
+          end
        }
 end
 
