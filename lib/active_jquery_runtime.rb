@@ -89,7 +89,7 @@ def initialize(table,ctlenv)
        pp themacro
        pp thetable
        if themacro == "has_many"
-          @jqgrid_html << "<script src=" + thetable + '".js" type="text/javascript"></script>' + "\n"
+          @jqgrid_html << "<script src=" + thetable + '.js" type="text/javascript"></script>' + "\n"
           self.html_generate(thetable)
           end
        }
