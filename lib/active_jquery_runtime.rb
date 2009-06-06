@@ -57,9 +57,35 @@ def initialize(table,ctlenv)
         end
           
    @tableheading = @controller.humanize()
-   pp self
-   self.jqgrid_generate()
-   self.html_generate()
+#
+# Example:
+#
+#@associations=
+#  [#<ActiveRecord::Reflection::AssociationReflection:0x14e48e0
+#    @active_record=
+#     Company(id: integer, name: string, created_at: datetime, updated_at: datetime),
+#    @macro=:has_many,
+#    @name=:user,
+#    @options={:extend=>[]}>,
+#   #<ActiveRecord::Reflection::AssociationReflection:0x14e3b48
+#    @active_record=
+#     Company(id: integer, name: string, created_at: datetime, updated_at: datetime),
+#    @macro=:has_many,
+#    @name=:location,
+#    @options={:extend=>[]}>,
+#   #<ActiveRecord::Reflection::AssociationReflection:0x14d8a90
+#    @active_record=
+#     Company(id: integer, name: string, created_at: datetime, updated_at: datetime),
+#    @macro=:has_many,
+#    @name=:division,
+#    @options={:extend=>[]}>],
+
+   @associations.each {|myassoc|
+       pp myassoc.@macro
+       pp myassoc.@name
+       }
+   self.jqgrid_generate(@tablename)
+   self.html_generate(@tablename)
 end
 
 def filter_for_create(my_params)
