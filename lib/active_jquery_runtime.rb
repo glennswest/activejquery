@@ -107,7 +107,7 @@ def jqgrid_generate(divid='list')
      @jqgrid_str << "var extraparam = {};\n"
      @jqgrid_str << "extraparam = {authenticity_token:encodeURIComponent(authenticityToken)};\n"
      @jqgrid_str << "myediturl = '" + @url + 
-                       "' + '?authenticity_token=' + authenticityToken;\n"
+                       "' + '?authenticity_token=' + encodeURIComponent(authenticityToken);\n"
      if @edittype == :inplace
         @jqgrid_str << "var " + divid + "lastsel;\n"
         end
