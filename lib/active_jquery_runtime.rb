@@ -80,11 +80,14 @@ def initialize(table,ctlenv)
 #    @name=:division,
 #    @options={:extend=>[]}>],
 
-   @associations.each {|myassoc|
-       pp myassoc
-       }
    self.jqgrid_generate(@tablename)
    self.html_generate(@tablename)
+   @associations.each {|myassoc|
+       themacro = myassoc.macro.to_s
+       thetable = myassoc.class_name
+       pp themacro
+       pp thetable
+       }
 end
 
 def filter_for_create(my_params)
