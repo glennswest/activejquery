@@ -1,6 +1,12 @@
 Activejquery
 ============
 
+June 6 2009 - Cleaned up grid javascript
+              Implemented first version using hidden fields
+              Moved all grids to be separate .js files
+              Fixed up divid so grids are re-useable,
+                    and multiple instances can be on one page
+              Added first level of support for association
 May 30 2009 - Moved to using JqGrid 3.5 beta
                  Removed alpha jqgrid subdir
                  Removed jqgrid loader
@@ -53,10 +59,14 @@ https://rails.lighthouseapp.com/attachments/90768/plugin_mkdir_p.diff
 
 TODO
 ===========
-1. Relationships - Nested Tables
-2. Customization
-3. More Edit Types
-4. Automatic route creation
+1. Relationships - HASBM
+2. Relationships - Belongs to
+3. Adding virtual columns for relationships
+4. Customization
+5. More Edit Types
+6. Automatic route creation
+7. Automatic javascript to connected related grids
+8. Details docs - In planning now
 ~                        
 
 Copyright (c) 2009 Glenn S West, released under the MIT license
