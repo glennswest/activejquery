@@ -155,7 +155,7 @@ def grid_javascript(myparams)
     return(@jqgrid_str)
 end
 
-def jqgrid_generate(divid='list',thetable)
+def jqgrid_generate(divid='list',thetable,subtable,parent)
   @jqgrid_str = String.new
   # @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
