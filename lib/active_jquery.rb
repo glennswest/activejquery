@@ -69,7 +69,6 @@ module ActiveJquery
               end
 
            def index
-               pp self
                setup_ajs()
                respond_to do |format|
                  format.html{ render 'activejquery/show' }
@@ -104,7 +103,7 @@ module ActiveJquery
                             myxml << "</root>\n"
                             render :xml => myxml
                             }
-                 format.js  { render :js => @ajs.grid_javascript() }
+                 format.js  { render :js => @ajs.grid_javascript(params) }
                  end
              end
 

@@ -81,7 +81,6 @@ def initialize(table,ctlenv)
 #    @name=:division,
 #    @options={:extend=>[]}>],
 
-   self.jqgrid_generate(@tablename)
    # Add the javascripts for the associated tables
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
@@ -97,7 +96,7 @@ def initialize(table,ctlenv)
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
        if themacro == "has_many"
-          self.html_generate(thetable)
+          self.html_generate(@tablename + '_' + thetable)
           end
        }
 end
@@ -140,11 +139,23 @@ def html_generate(divid = 'list')
    @jqgrid_html << '<table id="' + divid + '" class="scroll" style="text-align:left;"></table>' + "\n"
 end
 
-def grid_javascript()
+def grid_javascript(myparams)
+    divid = @tablename
+    tablename = @tablename
+    parenttable = @tablename
+    subtable = FALSE
+    if myparams.has_key?("div")
+       divid = myparams["div"]
+       end
+    if myparams.has_key?("subof")
+       subtable = TRUE
+       parenttable = myparams["subof"]
+       end
+    jqgrid_generate(divid,tablename,subtable,parenttable)
     return(@jqgrid_str)
 end
 
-def jqgrid_generate(divid='list')
+def jqgrid_generate(divid='list',thetable)
   @jqgrid_str = String.new
   # @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
