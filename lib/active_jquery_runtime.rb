@@ -87,7 +87,7 @@ def initialize(table,ctlenv)
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
        if themacro == "has_many"
-          @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + tablename + 
+          @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
                           '&div=' + @tablename + '_' + thetable + 
                           '" type="text/javascript"></script>' + "\n"
           end
