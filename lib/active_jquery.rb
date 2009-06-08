@@ -69,6 +69,7 @@ module ActiveJquery
               end
 
            def index
+               pp self
                setup_ajs()
                respond_to do |format|
                  format.html{ render 'activejquery/show' }
