@@ -6,6 +6,8 @@ June 8 2009 - Fixup grid generator to have parameters to be passed in
                                            The tablename is the parenttable
                         &divid=name      - Indicated the divid of the grid to be generated
                                            For a subgrid its parenttable_childtable
+June 27 2009 - Remove commented code a bit.
+               Fixup if edit mode not to display icons for add/delete
 June 6 2009 - Cleaned up grid javascript
               Implemented first version using hidden fields
               Moved all grids to be separate .js files

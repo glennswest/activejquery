@@ -157,7 +157,6 @@ end
 
 def jqgrid_generate(divid='list',thetable,subtable,parent)
   @jqgrid_str = String.new
-  # @jqgrid_str << '<script type="text/javascript">' + "\n"
   if @edit == TRUE
      @jqgrid_str << "var " + divid + "_editurl;\n"
      @jqgrid_str << divid + "_editurl = '" + @url + 
@@ -235,7 +234,6 @@ def jqgrid_generate(divid='list',thetable,subtable,parent)
   @jqgrid_str << "   rowNum:10,\n"
   @jqgrid_str << "   autowidth: true,\n"
   #@jqgrid_str << '   toolbar: [true,"top"],' + "\n"
-  #@jqgrid_str << "   rowList:[10,20,30],\n"
   @jqgrid_str << "   sortname: 'id',\n"
   @jqgrid_str << '   sortorder: "desc",' + "\n"
   @jqgrid_str << '   editData: {authenticity_token:authenticityToken},' + "\n"
@@ -251,9 +249,12 @@ def jqgrid_generate(divid='list',thetable,subtable,parent)
   @jqgrid_str << "                repeatitems:false}\n"
   @jqgrid_str << "  })"
   @jqgrid_str << ".navGrid('#" + divid + "-pager'," +
-                 '{viewrecords:false,add:true,del:true,search:true,view:true});' + "\n"
+                 '{viewrecords:false,'
+  if @edit == TRUE
+     @jqgrid_str << 'add:true,del:true,'
+     end
+  @jqgrid_str << 'search:true,view:true});' + "\n"
   @jqgrid_str << "});\n"
-  # @jqgrid_str << "</script>\n"
 end
 
 
