@@ -37,6 +37,7 @@ def initialize(table,ctlenv)
          @columns[cname]["hidden"] = FALSE
          @columns[cname]["label"] = cname.humanize
          @columns[cname]["listok"] = TRUE
+         @columns[cname]["is_association"] = FALSE
          if @firstfield == ""
             if cname != "id"
                @firstfield = cname    
@@ -111,6 +112,13 @@ def initialize(table,ctlenv)
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
        thename  = myassoc.name.to_s
+       theid = thename.downcase + "_id"
+       if @columns.has_key?(theid)   # We have a key to association
+          @columns[theid]["is_association"] = TRUE
+          @columns[theid]["association_name"] = thename
+          @columns[theid]["association_table"] = thetable
+          @columns[theid]["association_type"] = themacro
+          end
        pp myassoc
        case themacro
           when "has_many"
@@ -297,6 +305,11 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
      when 'main'
           @jqgrid_str << "   autowidth: true,\n"
      when 'localsel'
+          select_name = divid
+          function_name = divid + "_dataInit"
+          @jqgrid_str << "  " + function_name + ' : function  ( elem ) { ' + "\n"
+          @jqgrid_str << "      $('#gbox_" + divid + "').show();\n"
+          @jqgrid_str << "      },\n"
      end
 
        

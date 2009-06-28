@@ -7,6 +7,8 @@ June 28,2009 - Renameed localsel automatic divid to tablename_select
                Setup to hide localsel grids on initial load
                Change -pager to _pager for consistancy
                Fixup the naming convention to better handle has_one convention
+               Added flag to column info to tell us columns that are associations,
+                       plus association_name,type,table.
 June 27 2009 - Remove commented code a bit.
                Fixup if edit mode not to display icons for add/delete
                Added detection of selectfield - Either field called name, or first
