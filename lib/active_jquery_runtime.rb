@@ -282,7 +282,13 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
      end
 #
   @jqgrid_str << "   rowNum:10,\n"
-  @jqgrid_str << "   autowidth: true,\n"
+  case gridtype
+     when 'main'
+          @jqgrid_str << "   autowidth: true,\n"
+     when 'localsel'
+     end
+
+       
   #@jqgrid_str << '   toolbar: [true,"top"],' + "\n"
   @jqgrid_str << "   sortname: 'id',\n"
   @jqgrid_str << '   sortorder: "desc",' + "\n"
@@ -304,6 +310,8 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
                  '{viewrecords:false,'
   if @edit == TRUE
      @jqgrid_str << 'add:true,del:true,'
+    else
+     @jqgrid_str << 'add:false,del:false,'
      end
   @jqgrid_str << 'search:true,view:true});' + "\n"
   @jqgrid_str << "});\n"
