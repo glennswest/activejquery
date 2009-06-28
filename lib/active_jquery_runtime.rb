@@ -70,7 +70,7 @@ def initialize(table,ctlenv)
              @columns[cname]["editable"] = @edit
              end
        if cname[-3,3] == "_id" # We have a reference to a index
-          thename = cname[0..-3]
+          thename = cname[0..-4]
           @columns[cname]["hidden"] = TRUE
           @columns[cname]["editable"] = FALSE
           # Add a string field to take the 'name' into the grid
