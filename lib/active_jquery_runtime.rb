@@ -317,8 +317,8 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str << 'search:true,view:true});' + "\n"
   case gridtype
        when 'localsel'
-            @jqgrid_str << "$('#" + divid + "').hide();\n"
-            @jqgrid_str << "$('#" + divid + "_pager').hide();\n"
+            @jqgrid_str << "$('#gbox_" + divid + "').hide();\n"
+            # @jqgrid_str << "$('#" + divid + "_pager').hide();\n"
        end
   @jqgrid_str << "});\n"
 end
