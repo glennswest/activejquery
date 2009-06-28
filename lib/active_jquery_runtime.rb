@@ -102,6 +102,7 @@ def initialize(table,ctlenv)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
+       pp myassoc
        case themacro
           when "has_many"
                 @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
@@ -314,6 +315,10 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
      @jqgrid_str << 'add:false,del:false,'
      end
   @jqgrid_str << 'search:true,view:true});' + "\n"
+  case gridtype
+       when 'localsel'
+            @jqgrid_str << "$('" + divid + "_select).hide();\n"
+       end
   @jqgrid_str << "});\n"
 end
 
