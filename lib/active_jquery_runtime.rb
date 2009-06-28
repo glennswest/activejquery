@@ -162,7 +162,7 @@ end
 
 
 def html_generate(divid = 'list')
-   @jqgrid_html << '<div id="' + divid + '-pager" class="scroll"' + '></div>' + "\n"
+   @jqgrid_html << '<div id="' + divid + '_pager" class="scroll"' + '></div>' + "\n"
    @jqgrid_html << '<table id="' + divid + '" class="scroll" style="text-align:left;"></table>' + "\n"
 end
 
@@ -266,7 +266,7 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str.chomp!
   @jqgrid_str.chop!
   @jqgrid_str << "],\n"
-  @jqgrid_str << "   pager: jQuery('#" + divid + "-pager'),\n"
+  @jqgrid_str << "   pager: jQuery('#" + divid + "_pager'),\n"
 #
 # In Place Editing
 #
@@ -307,7 +307,7 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str << '                records:"root>records",' + "\n"
   @jqgrid_str << "                repeatitems:false}\n"
   @jqgrid_str << "  })"
-  @jqgrid_str << ".navGrid('#" + divid + "-pager'," +
+  @jqgrid_str << ".navGrid('#" + divid + "_pager'," +
                  '{viewrecords:false,'
   if @edit == TRUE
      @jqgrid_str << 'add:true,del:true,'
@@ -317,7 +317,8 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str << 'search:true,view:true});' + "\n"
   case gridtype
        when 'localsel'
-            @jqgrid_str << "$('#" + divid+ "').hide();\n"
+            @jqgrid_str << "$('#" + divid + "').hide();\n"
+            @jqgrid_str << "$('#" + divid + "_pager').hide();\n"
        end
   @jqgrid_str << "});\n"
 end

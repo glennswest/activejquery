@@ -4,6 +4,8 @@ Activejquery
 June 28,2009 - Renameed localsel automatic divid to tablename_select
                Remove editurl when not in edit mode
                Get rid of autowidth on localsel mode
+               Setup to hide localsel grids on initial load
+               Change -pager to _pager for consistancy
 June 27 2009 - Remove commented code a bit.
                Fixup if edit mode not to display icons for add/delete
                Added detection of selectfield - Either field called name, or first
