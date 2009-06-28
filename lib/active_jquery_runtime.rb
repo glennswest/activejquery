@@ -172,7 +172,7 @@ def grid_javascript(myparams)
     # localselect = used for selecting a record, with the result stored in javascript
     gridtype = "main"
     if myparams.has_key?("gridtype")
-       gridtype = myparams["gridtype")
+       gridtype = myparams["gridtype"]
        end 
     if myparams.has_key?("div")
        divid = myparams["div"]
