@@ -69,7 +69,7 @@ def initialize(table,ctlenv)
              @columns[cname]["editable"] = @edit
              end
         end
-   if @hasnamefield.istrue?
+   if @hasnamefield == TRUE
       @selectfield = "name"
      else 
       @selectfield = @firstfield
