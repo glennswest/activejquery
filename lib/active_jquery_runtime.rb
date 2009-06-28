@@ -110,7 +110,7 @@ def initialize(table,ctlenv)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
-       thename  = myassoc.name
+       thename  = myassoc.name.to_s
        pp myassoc
        case themacro
           when "has_many"
