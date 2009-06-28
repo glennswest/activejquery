@@ -70,6 +70,19 @@ def initialize(table,ctlenv)
              @columns[cname]["editable"] = @edit
              end
         end
+   if cname[-3,3] == "_id" # We have a reference to a index
+      thename = cname[0..-3]
+      @columns[cname]["hidden"] = TRUE
+      @columns[cname]["editable"] = FALSE
+      # Add a string field to take the 'name' into the grid
+      @columns[thename] = Hash.new
+      @columns[thename]["name"] = thename
+      @columns[thename]["type"] = 'string'
+      @columns[thename]["hidden"] = FALSE
+      @columns[thename]["label"] = thename.humanize
+      @columns[thename]["listok"] = TRUE
+      @columns[thename]["related_field"] = cname
+      end      
    if @hasnamefield == TRUE
       @selectfield = "name"
      else 
