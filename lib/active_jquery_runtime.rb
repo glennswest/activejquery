@@ -25,6 +25,9 @@ def initialize(table,ctlenv)
          }
    mydef = Array.new(@tabledef)
    @tablename = mydef.shift
+   @firstfield = ""
+   @hasnamefield = FALSE
+   @selectfield = ""
    while !mydef.empty?()
          cname = mydef.shift
          ctype = mydef.shift
@@ -34,7 +37,17 @@ def initialize(table,ctlenv)
          @columns[cname]["hidden"] = FALSE
          @columns[cname]["label"] = cname.humanize
          @columns[cname]["listok"] = TRUE
+         if @firstfield == ""
+            if cname != "id"
+               @firstfield = cname    
+               end
+            end
          case cname
+           when "name"
+             @hasnamefield = TRUE
+             @columns[cname]["key"] = FALSE
+             @columns[cname]["editable"] = TRUE
+             @columns[cname]["hidden"] = FALSE
            when "id"
              @columns[cname]["key"] = TRUE
              @columns[cname]["editable"] = FALSE
@@ -56,7 +69,11 @@ def initialize(table,ctlenv)
              @columns[cname]["editable"] = @edit
              end
         end
-          
+   if @hasnamefield?
+      @selectfield = "name"
+     else 
+      @selectfield = @firstfield
+     end
    @tableheading = @controller.humanize()
 #
 # Example:
@@ -85,10 +102,16 @@ def initialize(table,ctlenv)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
-       if themacro == "has_many"
-          @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
-                          '&div=' + @tablename + '_' + thetable + 
-                          '" type="text/javascript"></script>' + "\n"
+       case themacro
+          when "has_many"
+                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
+                                '&div=' + @tablename + '_' + thetable + 
+                                '" type="text/javascript"></script>' + "\n"
+          when "has_one"
+                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
+                               '&div=' + @tablename + '_' + thetable + 
+                               '&gridtype=localsel' + 
+                               '" type="text/javascript"></script>' + "\n"
           end
        }
    self.html_generate(@tablename)
@@ -144,6 +167,13 @@ def grid_javascript(myparams)
     tablename = @tablename
     parenttable = @tablename
     subtable = FALSE
+    # Grid Types
+    # main = standard grid
+    # localselect = used for selecting a record, with the result stored in javascript
+    gridtype = "main"
+    if myparams.has_key?("gridtype")
+       gridtype = myparams["gridtype")
+       end 
     if myparams.has_key?("div")
        divid = myparams["div"]
        end
@@ -151,12 +181,17 @@ def grid_javascript(myparams)
        subtable = TRUE
        parenttable = myparams["subof"]
        end
-    jqgrid_generate(divid,tablename,subtable,parenttable)
+    jqgrid_generate(divid,tablename,subtable,parenttable,gridtype)
     return(@jqgrid_str)
 end
 
-def jqgrid_generate(divid='list',thetable,subtable,parent)
+def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str = String.new
+  case gridtype
+     when "main"
+     when "localsel"
+          @edit = FALSE
+     end
   if @edit == TRUE
      @jqgrid_str << "var " + divid + "_editurl;\n"
      @jqgrid_str << divid + "_editurl = '" + @url + 
@@ -200,16 +235,26 @@ def jqgrid_generate(divid='list',thetable,subtable,parent)
               # <created-on type="datetime">2008-08-18T07:00:24Z</created-on>
               @jqgrid_str << "width:180,"
         end
-     if @columns[cname]["hidden"]
-        @jqgrid_str << "hidden:true,"
-       else
-        @jqgrid_str << "hidden:false,"
-       end
-     if @columns[cname]["editable"]
-        @jqgrid_str << "editable:true"
-       else
-        @jqgrid_str << "editable:false"
-       end
+     case gridtype
+        when 'main'
+             if @columns[cname]["hidden"]
+                @jqgrid_str << "hidden:true,"
+               else
+                @jqgrid_str << "hidden:false,"
+              end
+             if @columns[cname]["editable"]
+                @jqgrid_str << "editable:true"
+               else
+                @jqgrid_str << "editable:false"
+               end
+        when 'localsel'
+             if cname == @selectfield 
+                @jqgrid_str << "hidden:false,"
+               else
+                @jqgrid_str << "hidden:true,"
+               end
+             @jqgrid_str << "editable:false"
+        end    
     @jqgrid_str << "},\n"
     }
   @jqgrid_str.chomp!

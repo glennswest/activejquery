@@ -1,13 +1,20 @@
 Activejquery
 ============
 
+June 27 2009 - Remove commented code a bit.
+               Fixup if edit mode not to display icons for add/delete
+               Added detection of selectfield - Either field called name, or first
+                     non id field in table
+               Added gridtype to possible javascript parameters
+               Added grid generator support for @gridtype=typeofgrid
+                     typeofgrid = main      - Normal Grid
+                     typeofgrid = localsel  - Limited Grid for selecting a single item, with only "name" field, no edit
+              Added html generation to generate has_one relationship
 June 8 2009 - Fixup grid generator to have parameters to be passed in
                         ?subof=tablename - Indicating that we ard a subtable, and of which table
                                            The tablename is the parenttable
                         &divid=name      - Indicated the divid of the grid to be generated
                                            For a subgrid its parenttable_childtable
-June 27 2009 - Remove commented code a bit.
-               Fixup if edit mode not to display icons for add/delete
 June 6 2009 - Cleaned up grid javascript
               Implemented first version using hidden fields
               Moved all grids to be separate .js files
