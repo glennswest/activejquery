@@ -109,7 +109,7 @@ def initialize(table,ctlenv)
                                 '" type="text/javascript"></script>' + "\n"
           when "has_one"
                 @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
-                               '&div=' + @tablename + '_' + thetable + 
+                               '&div=' + @tablename + '_select' + 
                                '&gridtype=localsel' + 
                                '" type="text/javascript"></script>' + "\n"
           end
@@ -118,8 +118,11 @@ def initialize(table,ctlenv)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
-       if themacro == "has_many"
+       case themacro
+       when "has_many"
           self.html_generate(@tablename + '_' + thetable)
+       when "has_one"
+          self.html_generate(@tablename + '_select')
           end
        }
 end
