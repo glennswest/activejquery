@@ -6,6 +6,7 @@ June 28,2009 - Renameed localsel automatic divid to tablename_select
                Get rid of autowidth on localsel mode
                Setup to hide localsel grids on initial load
                Change -pager to _pager for consistancy
+               Fixup the naming convention to better handle has_one convention
 June 27 2009 - Remove commented code a bit.
                Fixup if edit mode not to display icons for add/delete
                Added detection of selectfield - Either field called name, or first
@@ -86,6 +87,7 @@ TODO
 6. Automatic route creation
 7. Automatic javascript to connected related grids
 8. Details docs - In planning now
+9. Fix localsel table to use @options={:class_name=>"User"}, and @name=:supervisor
 ~                        
 
 Copyright (c) 2009 Glenn S West, released under the MIT license

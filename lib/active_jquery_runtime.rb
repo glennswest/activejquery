@@ -97,20 +97,29 @@ def initialize(table,ctlenv)
 #    @macro=:has_many,
 #    @name=:division,
 #    @options={:extend=>[]}>],
+#<ActiveRecord::Reflection::AssociationReflection:0x274a728
+# @active_record=
+#  User(id: integer, name: string, email: string, supervisor_id: integer, company_id: integer, division_id: integer, department_id: integer, location_id: integer, created_at: datetime, updated_at: datetime),
+# @class_name="User",
+# @macro=:has_one,
+# @name=:supervisor,
+# @options={:class_name=>"User"}>
+
 
    # Add the javascripts for the associated tables
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
+       thename  = myassoc.name
        pp myassoc
        case themacro
           when "has_many"
-                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
-                                '&div=' + @tablename + '_' + thetable + 
+                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + thetable + 
+                                '&div=' + thename + '_' + thetable + 
                                 '" type="text/javascript"></script>' + "\n"
           when "has_one"
-                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + @tablename + 
-                               '&div=' + @tablename + '_select' + 
+                @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + thetable + 
+                               '&div=' + thename + '_select' + 
                                '&gridtype=localsel' + 
                                '" type="text/javascript"></script>' + "\n"
           end
@@ -119,11 +128,12 @@ def initialize(table,ctlenv)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
+       thename  = myassoc.name
        case themacro
        when "has_many"
-          self.html_generate(@tablename + '_' + thetable)
+          self.html_generate(thename + '_' + thetable)
        when "has_one"
-          self.html_generate(@tablename + '_select')
+          self.html_generate(thename + '_select')
           end
        }
 end
