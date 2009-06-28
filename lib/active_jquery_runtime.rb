@@ -206,7 +206,9 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   @jqgrid_str << 'jQuery(document).ready(function(){' + "\n"
   @jqgrid_str << 'jQuery("#' + divid + '").jqGrid({' + "\n"
   @jqgrid_str << "   url:'" + @url + ".xml" +"',\n"
-  @jqgrid_str << "   editurl: " + divid + "_editurl,\n"
+  if @edit
+     @jqgrid_str << "   editurl: " + divid + "_editurl,\n"
+     end
   @jqgrid_str << "   datatype: 'xml', \n"
   @jqgrid_str << "   height: " + '"auto"' + ", \n"
   @jqgrid_str << "   mtype: 'GET',\n"
@@ -284,7 +286,9 @@ def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
   #@jqgrid_str << '   toolbar: [true,"top"],' + "\n"
   @jqgrid_str << "   sortname: 'id',\n"
   @jqgrid_str << '   sortorder: "desc",' + "\n"
-  @jqgrid_str << '   editData: {authenticity_token:authenticityToken},' + "\n"
+  if @edit
+     @jqgrid_str << '   editData: {authenticity_token:authenticityToken},' + "\n"
+     end
   @jqgrid_str << '   viewrecords: true,' + "\n"
   @jqgrid_str << "   imgpath: 'javascripts/jqGrid/themes/redmond/images',\n"
   @jqgrid_str << "   caption: '" + @tableheading + "',\n"
