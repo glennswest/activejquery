@@ -78,6 +78,7 @@ def initialize(table,ctlenv)
           @columns[thename]["name"] = thename
           @columns[thename]["type"] = 'string'
           @columns[thename]["hidden"] = FALSE
+          @columns[thename]["editable"] = TRUE
           @columns[thename]["label"] = thename.humanize
           @columns[thename]["listok"] = TRUE
           @columns[thename]["related_field"] = cname
