@@ -1,6 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title> <%= @title %> </title>
-</head>
 <h2> <%= @heading %> </h2>
 <link rel="stylesheet" type="text/css" media="screen" href="css/ui-lightness/jquery-ui-1.7.2.custom.css" />
 <link rel="stylesheet" type="text/css" media="screen" href="css/ui.jqgrid.css"/>
@@ -9,8 +10,6 @@
 html, body {
 	margin: 0;			/* Remove body margin/padding */
 	padding: 0;
-	overflow: hidden;	/* Remove scroll bars on browser window */	
-    font-size: 75%;
 }
 </style>
 
@@ -21,6 +20,7 @@ html, body {
 <script type="text/javascript" charset="utf-8">
 var authenticityToken  = "<%= form_authenticity_token %>";
 </script>
+</head>
 <body>
 
 <%= @content_for_layout %>

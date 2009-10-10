@@ -194,8 +194,8 @@ end
 
 
 def html_generate(divid = 'list')
-   @jqgrid_html << '<div id="' + divid + '_pager" class="scroll"' + '></div>' + "\n"
-   @jqgrid_html << '<table id="' + divid + '" class="scroll" style="text-align:left;"></table>' + "\n"
+   @jqgrid_html << '<table id="' + divid + '""></table>' + "\n"
+   @jqgrid_html << '<div id="' + divid + '_pager"' + '></div>' + "\n"
 end
 
 def grid_javascript(myparams)
