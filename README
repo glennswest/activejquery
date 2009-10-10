@@ -1,6 +1,7 @@
 Activejquery
 ============
 
+Oct  10,2009 - Updated to jquery-ui-1.7.2 and jggrid 3.5.2
 June 28,2009 - Renameed localsel automatic divid to tablename_select
                Remove editurl when not in edit mode
                Get rid of autowidth on localsel mode
