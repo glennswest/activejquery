@@ -31,7 +31,7 @@ def initialize(table,ctlenv)
    @columns = Hash.new
    @table = table
    @associations = table.reflect_on_all_associations
-   @assoc_fields = find_associaed_fields(@associations)
+   @assoc_fields = find_associated_fields(@associations)
    @tabledef = table.inspect.split(/[:,()]/)
    @tabledef << @assoc_fields
    @tabledef.each {|theitem|
