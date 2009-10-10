@@ -31,7 +31,9 @@ def initialize(table,ctlenv)
    @columns = Hash.new
    @table = table
    @associations = table.reflect_on_all_associations
+   @assoc_fields = find_associaed_fields(@associations)
    @tabledef = table.inspect.split(/[:,()]/)
+   @tabledef << @assoc_fields
    @tabledef.each {|theitem|
          theitem.lstrip!
          }
@@ -102,6 +104,10 @@ def initialize(table,ctlenv)
       @selectfield = @firstfield
      end
    @tableheading = @controller.humanize()
+   self.html_generate(@tablename)
+   end
+
+def gen_associations()
 #
 # Example:
 #
@@ -145,7 +151,6 @@ def initialize(table,ctlenv)
           @columns[theid]["association_table"] = thetable
           @columns[theid]["association_type"] = themacro
           end
-       pp myassoc
        case themacro
           when "has_many"
                 @jqgrid_html << '<script src="' + thetable.downcase + '.js?subof=' + thetable + 
@@ -158,7 +163,6 @@ def initialize(table,ctlenv)
                                '" type="text/javascript"></script>' + "\n"
           end
        }
-   self.html_generate(@tablename)
    @associations.each {|myassoc|
        themacro = myassoc.macro.to_s
        thetable = myassoc.class_name
