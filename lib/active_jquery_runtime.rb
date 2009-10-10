@@ -33,11 +33,11 @@ def initialize(table,ctlenv)
    @associations = table.reflect_on_all_associations
    @assoc_fields = find_associated_fields(@associations)
    @tabledef = table.inspect.split(/[:,()]/)
-   @tabledef << @assoc_fields
    @tabledef.each {|theitem|
          theitem.lstrip!
          }
    mydef = Array.new(@tabledef)
+   mydef << @assoc_fields
    @tablename = mydef.shift
    @firstfield = ""
    @hasnamefield = FALSE
