@@ -2,6 +2,18 @@ require 'rubygems'
 require 'pp'
 
 class ActiveJqueryRuntime
+def find_associated_fields(assoc)
+   assoc_columns = Array.new
+   @associations.each {|myassoc|
+       themacro = myassoc.macro.to_s
+       thetable = myassoc.class_name
+       thename  = myassoc.name.to_s
+       assoc_columns << thename
+       assoc_columns << themacro
+       }
+   return(assoc_columns)
+end
+
 def initialize(table,ctlenv)
    @controller = ctlenv.params[:controller]
    @url = @controller
