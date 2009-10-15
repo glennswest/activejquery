@@ -13,8 +13,6 @@ module ActiveJquery
     def initialize(model_id)
       @model_id = model_id
       @model = model_id.to_s.camelize.constantize
-      pp @model_id
-      pp @model
     end
  
     def model_name
@@ -46,7 +44,7 @@ module ActiveJquery
                if !defined? @ajs 
                   @ajs = ActiveJqueryRuntime.new(self.class.active_jquery_config.model,self)
                   @content_for_layout = String.new
-                  @content_for_layout << '<script src="' + params[:controller] + '.js" type="text/javascript"></script>' + "\n"
+                  @content_for_layout << '<script src="/' + params[:controller] + '.js" type="text/javascript"></script>' + "\n"
                   @content_for_layout << @ajs.grid_html()
                   @heading = params[:controller].humanize()
                   @title = @heading

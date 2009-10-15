@@ -1,6 +1,8 @@
 Activejquery
 ============
-
+Oct  15,2009 - Fixed Keyword problems for Ruby 1.8
+               Fixed "/" problem breaking javascript includes with namespace
+               
 Oct  10,2009 - Start adding better assoc support
 Oct  10,2009 - Updated to jquery-ui-1.7.2 and jggrid 3.5.2
 June 28,2009 - Renameed localsel automatic divid to tablename_select
@@ -54,12 +56,27 @@ May 14 2009 - Added support for one line controller.
 Environment: 
 =======
 Designed for Ruby 1.9.1 and Rails 2.3.2
+Initial testing done for Ruby 1.8.x
+
+Formatting Notes:
+================
+Activejquery uses a default view to style the grid, 
+this is in views/activejquery/show.erb
+If you have added addition default styles/views, you may see the
+page number box to be squashed. 
+
 
 Routes
 =======
 You must add a active resource route in config/routes.rb
 
 map.resources :airstate
+
+Namespaced Controller route example
+
+  map.namespace :adminspace do |adminspace|
+      adminspace.resources :user
+      end
 
 Example
 =======

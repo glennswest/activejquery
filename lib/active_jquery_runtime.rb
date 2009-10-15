@@ -16,7 +16,7 @@ end
 
 def initialize(table,ctlenv)
    @controller = ctlenv.params[:controller]
-   @url = @controller
+   @url = "/" + @controller # To handle namespace properly
    @tkey = "id"
    @actions = [:create, :update, :show, :delete, :search]
    @edit = FALSE
@@ -210,7 +210,7 @@ end
 
 
 def html_generate(divid = 'list')
-   @jqgrid_html << '<table id="' + divid + '""></table>' + "\n"
+   @jqgrid_html << '<table id="' + divid + '"></table>' + "\n"
    @jqgrid_html << '<div id="' + divid + '_pager"' + '></div>' + "\n"
 end
 
