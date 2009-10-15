@@ -13,6 +13,8 @@ module ActiveJquery
     def initialize(model_id)
       @model_id = model_id
       @model = model_id.to_s.camelize.constantize
+      pp @model_id
+      pp @model
     end
  
     def model_name
