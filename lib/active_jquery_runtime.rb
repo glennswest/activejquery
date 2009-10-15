@@ -237,7 +237,7 @@ def grid_javascript(myparams)
     return(@jqgrid_str)
 end
 
-def jqgrid_generate(divid='list',thetable,subtable,parent,gridtype)
+def jqgrid_generate(divid='list',thetable,gsubtable,gparent,gridtype)
   @jqgrid_str = String.new
   case gridtype
      when "main"
